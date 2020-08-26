@@ -29,7 +29,7 @@ app.use(session({
 })) // name of our secrent key "SESSION_SECRET" create and .env
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method')) // as html form no delete method, use this to convert
 // temporary as we not connecting to database
 const users = [];
 
@@ -41,6 +41,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs');
 
 })
+//login is using passport to authenticate, to passport-config.js
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
@@ -69,12 +70,13 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     console.log(users);
 })
 
+//dp log out 
 app.delete('/logout', (req, res) => {
     req.logOut()
     res.redirect('/login')
 
 })
-
+//ensure everyone must login to view other pages 
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()
@@ -82,7 +84,7 @@ function checkAuthenticated(req, res, next) {
     res.redirect('/login');
 
 }
-
+//ensure once login cannot go to login or register pages
 function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return res.redirect('/');
@@ -91,6 +93,7 @@ function checkNotAuthenticated(req, res, next) {
     next()
 }
 
+//create port 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`listening on port ${port}....`);
