@@ -1,0 +1,24 @@
+<p>
+  <b>This is for old for loop</b>
+  <% for(var i=0; i < data.test.length; i++) { %>
+
+  <li><%= data.test[i].name %></li>
+  <% } %>
+</p>
+<p>
+  <b>This is for each for loop</b>
+  <% data.test.forEach(result=>{ %>
+  <li><%= result.name %></li>
+  <% }) %>
+</p>
+
+<p>
+  <b>this is for get param</b>
+  <br />
+  Hi <%= data.query %>
+</p>
+
+<p>
+  <b>This is to test if function</b>
+  <% if (data.query.length <4) { %>  <p> Name is too short </p> <% } else  { %> <p>name is too long </p> <% } %>
+</p>
