@@ -1,0 +1,32 @@
+GET http://localhost:3000/api/posts/
+
+###
+
+GET http://localhost:3000/
+
+###
+POST http://localhost:3000/api/posts/
+Content-Type: application/json
+
+{
+"title" : "c1234555",
+"body" : "Unbox therapy"
+
+}
+
+###
+
+GET http://localhost:3000/api/posts/5f7b093e2cdd3c49b4bf8507
+
+
+###
+
+DELETE http://localhost:3000/api/posts/5f7b093e2cdd3c49b4bf8507
+
+### 
+PATCH http://localhost:3000/api/posts/5f7b0a04a23892385c84de4d
+Content-Type: application/json
+
+{
+"title" : "chun chun"
+}
